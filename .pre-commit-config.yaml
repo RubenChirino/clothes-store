@@ -1,0 +1,10 @@
+repos:
+  - repo: https://github.com/pre-commit/mirrors-java-checkstyle
+    rev: v2.2.0
+    hooks:
+      - id: checkstyle
+        args: ["-c", "checkstyle.xml", "--encoding", "UTF-8", "--console", "PLAIN"]
+  - repo: https://github.com/pre-commit/mirrors-java-prettier
+    rev: v1.13.0
+    hooks:
+      - id: google-java-format
