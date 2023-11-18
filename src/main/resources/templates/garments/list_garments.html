@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Garments Administrator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+<div class="container mx-auto px-4 md:px-6 py-8 text-center">
+    <h1 class="text-3xl font-semibold mb-6">Garments List</h1>
+    <div class="mb-4">
+        <a href="/store" class="text-blue-500 hover:text-blue-700">Go to the main menu</a>
+        <span class="mx-2">|</span>
+        <a href="/garments/new" class="text-blue-500 hover:text-blue-700">Create new garment</a>
+    </div>
+
+    <div class="flex justify-center gap-4 mb-4">
+        <div>
+            <p class="font-semibold">Page Number:</p>
+            <p class="font-bold" th:text="${pageNumber}">Page Number</p>
+        </div>
+        <div>
+            <p class="font-semibold">Total Pages:</p>
+            <p class="font-bold" th:text="${totalPages}">Total Pages</p>
+        </div>
+    </div>
+
+    <table class="min-w-full bg-white border-collapse text-left">
+        <thead>
+        <tr class="text-sm font-medium text-gray-700">
+            <th class="px-6 py-3">Garment ID</th>
+            <th class="px-6 py-3">Description</th>
+            <th class="px-6 py-3">Type</th>
+            <th class="px-6 py-3">Base Price</th>
+            <th class="px-6 py-3">Actions</th>
+        </tr>
+        </thead>
+        <tbody class="text-sm font-normal text-gray-700">
+        <tr th:each="garment : ${GarmentsList}" class="hover:bg-gray-100">
+            <td class="px-6 py-4" th:text="${garment.id}">Garment ID</td>
+            <td class="px-6 py-4" th:text="${garment.description}">Description</td>
+            <td class="px-6 py-4" th:text="${garment.type.description}">Type</td>
+            <td class="px-6 py-4" th:text="${garment.basePrice}">Base Price</td>
+            <td class="px-6 py-4">
+                <a th:href="@{'/garments/edit/' + ${garment.id}}" class="text-blue-500 hover:text-blue-700">Edit</a>
+                <span class="mx-2">|</span>
+                <a th:href="@{'/garments/delete/' + ${garment.id}}" class="text-red-500 hover:text-red-700">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Edit a Sale Item</title>
+</head>
+<body>
+    <div align="center">
+        <h1>Edit a Sale Item</h1>
+        <br />
+        <table>
+            <tbody>
+                <tr>
+<!--                     <th><a href="/ventas/show_ventas">Volver al detalle de la venta</a></th> -->
+                    <th>&nbsp;</th>
+                    <th><a href="/sales/list">Back to the sale list</a></th>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <form action="#" th:action="@{/sales/item/update}"
+            th:object="${item}" method="post">
+            <table border="0" cellpadding="10">
+                <tr>
+                    <td>Item:</td>
+                    <td><input type="text" th:field="*{item.id}" readonly="readonly"/></td>
+                </tr>
+                <tr>
+                    <td>Quantity:</td>
+                    <td><input type="text" th:field="*{item.quantity}" /></td>
+                </tr>
+                   <tr>
+                    <td colspan="2"><button> <a th:href="@{'/sales/show/' + *{sale.id}}">Back</a> </button></td>
+                    <td colspan="2"><button type="submit">Save</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

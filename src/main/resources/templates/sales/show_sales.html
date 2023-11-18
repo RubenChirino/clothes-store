@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Sales Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+<div class="container mx-auto px-4 md:px-6 py-8">
+    <h1 class="text-3xl font-semibold text-center mb-6">Sales list</h1>
+    <div class="flex justify-center gap-4 mb-4">
+        <a href="/sales/list" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Back to the sales list</a>
+    </div>
+    <div th:each="sale : ${SalesList}" class="mb-8">
+        <table class="min-w-full bg-white border-collapse border border-gray-300 mb-4">
+            <thead>
+            <tr class="bg-red-500 text-white">
+                <th class="px-6 py-3">Sale ID</th>
+                <th class="px-6 py-3">Date</th>
+                <th class="px-6 py-3">Client Name</th>
+                <th class="px-6 py-3">Client Last Name</th>
+                <th class="px-6 py-3">Actions</th>
+            </tr>
+            </thead>
+            <tbody class="text-sm font-normal text-gray-700">
+            <tr>
+                <td class="border px-6 py-4" th:text="${sale.id}">Sale ID</td>
+                <td class="border px-6 py-4" th:text="${sale.date}">Date</td>
+                <td class="border px-6 py-4" th:text="${sale.client.name}">Name</td>
+                <td class="border px-6 py-4" th:text="${sale.client.lastName}">Last Name</td>
+                <td class="border px-6 py-4">
+                    <a href="#" th:href="@{'/sales/' + ${sale.id} +'/item/new'}" class="text-blue-500 hover:text-blue-700">Add Item</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="min-w-full bg-white border-collapse border border-gray-300">
+            <thead>
+            <tr class="bg-blue-500 text-white">
+                <th class="px-6 py-3">ID</th>
+                <th class="px-6 py-3">Quantity</th>
+                <th class="px-6 py-3">Garment</th>
+<!--                <th class="px-6 py-3">Price</th>-->
+                <th class="px-6 py-3">Actions</th>
+            </tr>
+            </thead>
+            <tbody class="text-sm font-normal text-gray-700">
+            <tr th:each="item : ${sale.items}">
+                <td class="border px-6 py-4" th:text="${item.id}">Item ID</td>
+                <td class="border px-6 py-4" th:text="${item.quantity}">Quantity</td>
+                <td class="border px-6 py-4" th:text="${item.garment.description}">Garment</td>
+<!--                <td class="border px-6 py-4" th:text="${item.price}" class="number">Price</td>-->
+                <td class="border px-6 py-4">
+                    <a href="#" th:href="@{'/item/edit/' + ${item.id}}" class="text-blue-500 hover:text-blue-700">Edit</a>
+                    <span class="mx-2">|</span>
+                    <a href="#" th:href="@{'/item/delete/' + ${item.id}}" class="text-red-500 hover:text-red-700">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
